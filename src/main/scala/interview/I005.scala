@@ -4,19 +4,19 @@ package interview
 题目：输入n个整数，输出其中最小的k个。
 例如输入1，2，3，4，5，6，7和8这8个数字，则最小的4个数字为1，2，3和4。
 */
-class HeapTree (size: Int) {
+class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 	private val items = new Array[Int](size)
 	private var s = 0
 
 	def add(v: Int) {
 		if (s == size) {
-			if (v > items(0)) return
+			if (f(v, items(0))) return
 			remove
 			add(v)
 		} else {
 			s += 1
 			items(s - 1) = v
-			heapify(0)
+			siftup(s - 1)
 		}
 	}
 
@@ -25,19 +25,27 @@ class HeapTree (size: Int) {
 		items(0) = items(s - 1)
 		s -= 1
 		if (s > 0) {
-			heapify(0)
+			siftdown(0)
 		}
 		top
 	}
 
-	def heapify(idx: Int) {
+	private def siftup(idx: Int) {
+		val p = parent(idx)
+		if (f(items(idx), items(p))) {
+			swap(idx, p)
+			siftup(p)
+		}
+	}
+
+	private def siftdown(idx: Int) {
 		val l = left(idx)
 		val r = right(idx)
-		var largest = if (l < s && items(l) > items(idx)) l else idx
-		largest = if (r < s && items(r) > items(largest)) r else largest
+		var largest = if (l < s && f(items(l), items(idx))) l else idx
+		largest = if (r < s && f(items(r), items(largest))) r else largest
 		if (largest != idx) {
 			swap(idx, largest)
-			heapify(largest)
+			siftdown(largest)
 		}
 	}
 
@@ -53,9 +61,11 @@ class HeapTree (size: Int) {
 }
 
 object I005 extends App {
-	val input = Array(1,2,3,4,5,6,7,8)
-	val heap = new HeapTree(4)
-	input.foreach(heap.add(_))
-	(1 to 4).foreach(_ => println(heap.remove))
-	val input2 = Array(9,5,8,3,6,1,4)
+	def test(input: Seq[Int]) {
+		val heap = new HeapTree(4)((a, b) => a < b)
+		input.foreach(heap.add(_))
+		(1 to 4).foreach(_ => println(heap.remove))
+	}
+	test(List(1,2,3,4,5,6,7,8))
+	test(List(9,5,3,13,6,1,7,10))
 }
