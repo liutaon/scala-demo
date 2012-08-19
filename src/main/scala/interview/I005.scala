@@ -21,6 +21,7 @@ class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 	}
 
 	def remove() = {
+		if (s == 0) throw new Exception("empty")
 		val top = items(0)
 		items(0) = items(s - 1)
 		s -= 1
@@ -29,6 +30,8 @@ class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 		}
 		top
 	}
+
+	def count = s
 
 	private def siftup(idx: Int) {
 		val p = parent(idx)
@@ -49,7 +52,7 @@ class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 		}
 	}
 
-	def swap(i: Int, j: Int): Unit = {
+	private def swap(i: Int, j: Int): Unit = {
 		val v = items(i);
 		items(i) = items(j);
 		items(j) = v
@@ -62,7 +65,7 @@ class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 
 object I005 extends App {
 	def test(input: Seq[Int]) {
-		val heap = new HeapTree(4)((a, b) => a < b)
+		val heap = new HeapTree(4)((a, b) => a > b)
 		input.foreach(heap.add(_))
 		(1 to 4).foreach(_ => println(heap.remove))
 	}
