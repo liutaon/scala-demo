@@ -11,7 +11,7 @@ package interview
 2.如果需要求出俩个链表相交的第一个节点列?
 */
 object I007 extends App {
-	case class ListNode(value: Int, var next: ListNode) {
+	case class ListNode(value: Int, next: ListNode) {
 		def last() = {
 			var count = 1
 			var node = this
@@ -23,8 +23,8 @@ object I007 extends App {
 		}
 
 		def cross(node: ListNode): ListNode = {
-			var (c1, l1) = last
-			var (c2, l2) = node.last
+			val (c1, l1) = last
+			val (c2, l2) = node.last
 			if (l1 != l2) {
 				return null
 			}
