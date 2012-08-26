@@ -14,7 +14,7 @@ package interview
 因此返回true。
 如果输入7、4、6、5，没有哪棵树的后序遍历的结果是这个序列，因此返回false。
 */
-object I009 extends App {
+object I009 extends Demo {
 	def check(input: Seq[Int]): Boolean = {
 		check(input, _ < Int.MaxValue)
 	}
@@ -35,7 +35,9 @@ object I009 extends App {
 		check(input.view(0, left + 1), _ < last) && check(input.view(left + 1, right + 1), _ > last)
 	}
 
-	println(check(List(5,7,6,9,11,10,8)))
-	println(check(List(7,4,6,5)))
-	println(check(List(3,2,1)))
+	def test() = {
+		println(check(List(5,7,6,9,11,10,8)))
+		println(check(List(7,4,6,5)))
+		println(check(List(3,2,1)))
+	}
 }

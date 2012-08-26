@@ -12,7 +12,7 @@ package interview
 分配: 6,2,1,0,0,0,1,0,0,0  
 */
 // 个人认为此题有歧义，若输入为0,1,2，则无法确定输出什么。
-object I006 extends App {
+object I006 extends Demo {
 	case class FindCounter(input: Seq[Int]){
 		private val counter = Array.fill(input.size)(-1)
 		private var ok = false
@@ -41,8 +41,10 @@ object I006 extends App {
 		def getFrequecy(num: Int) = counter.count(_ == num)
 	}
 
-	println(FindCounter(List(0,1,2,3,4,5,6,7,8,9)).find)
-	println(FindCounter(List(0,1,2,3)).find)
-	println(FindCounter(List(0,1,2)).find)
-	println(FindCounter(List(0,1,2,3,4,5,6)).find)
+	def test() = {
+		println(FindCounter(List(0,1,2,3,4,5,6,7,8,9)).find)
+		println(FindCounter(List(0,1,2,3)).find)
+		println(FindCounter(List(0,1,2)).find)
+		println(FindCounter(List(0,1,2,3,4,5,6)).find)
+	}
 }

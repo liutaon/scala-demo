@@ -13,17 +13,9 @@ package interview
 4=6=8=10=12=14=16。
 */
 
-object I001 extends App {
-	case class Node(value: Int, var left: Node, var right: Node) {
-		def add(t: Int): Node = t.compare(value) match {
-			case i if i < 0 && left != null => left.add(t)
-			case i if i < 0 && left == null => left = Node(t);this
-			case _ if right != null => right.add(t)
-			case _ if right == null => right = Node(t);this
-		}
-
-		def add(tt: List[Int]): Node = { tt.foreach(add(_)); this }
-
+object I001 extends Demo {
+	implicit def wrapper(node: Node) = new MyNode(node)
+	case class MyNode(node: Node) {
 		private var last: Node = null
 
 		def toList(node: Node): Node = {
@@ -42,20 +34,22 @@ object I001 extends App {
 			}
 			last = node
 		}
-
-		def leftString: String = if (left != null) left.leftString + "," + value else value.toString
 	}
 
-	object Node {
-		def apply(i: Int) = new Node(i, null, null)
-
-		def from(ii: List[Int]) = ii match {
-			case Nil => null
-			case head :: xs => new Node(head, null, null).add(xs)
+	def leftString(node: Node): String = {
+		import scala.collection.mutable
+		val list = mutable.ListBuffer[Int]()
+		var n = node
+		while (n != null) {
+			list += n.value
+			n = n.left
 		}
+		list.reverse.mkString("=")
 	}
 
-	val input = List(10,6,14,4,8,12,16)
-	val root = Node.from(input)
-	println(root.toList(root).leftString)
+	def test() = {
+		val input = List(10,6,14,4,8,12,16)
+		val root = Node.from(input)
+		println(leftString(root.toList(root)))
+	}
 }

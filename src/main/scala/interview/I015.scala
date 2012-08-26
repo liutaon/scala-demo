@@ -24,30 +24,22 @@ BSTreeNode *m_pLeft; // left child of node
 BSTreeNode *m_pRight; // right child of node
 };
 */
-object I015 extends App {
-	case class Node(value: Int, var left: Node, var right: Node) {
-		def add(t: Int): Node = t.compare(value) match {
-			case i if i < 0 && left != null => left.add(t)
-			case i if i < 0 && left == null => left = Node(t);this
-			case _ if right != null => right.add(t)
-			case _ if right == null => right = Node(t);this
-		}
-
-		def add(tt: List[Int]): Node = { tt.foreach(add(_)); this }
-
+object I015 extends Demo {
+	implicit def wrapper(node: Node) = new MyNode(node)
+	case class MyNode(node: Node) {
 		def mirror: Node = {
-			val t = left
-			left = right
-			right = t
-			if (left != null) left.mirror
-			if (right != null) right.mirror
-			this
+			val t = node.left
+			node.left = node.right
+			node.right = t
+			if (node.left != null) node.left.mirror
+			if (node.right != null) node.right.mirror
+			node
 		}
 
 		def mirror2: Node = {
 			import scala.collection.mutable
 			val stack = mutable.Stack[Node]()
-			stack.push(this)
+			stack.push(node)
 			while (!stack.isEmpty) {
 				val node = stack.pop
 				val t = node.left
@@ -56,21 +48,14 @@ object I015 extends App {
 				if (node.left != null) stack.push(node.right)
 				if (node.right != null) stack.push(node.left)
 			}
-			this
+			node
 		}
 	}
 
-	object Node {
-		def apply(i: Int) = new Node(i, null, null)
-
-		def from(ii: List[Int]) = ii match {
-			case Nil => null
-			case head :: xs => new Node(head, null, null).add(xs)
-		}
+	def test() = {
+		val root = Node.from(List(8,6,10,5,7,9,11))
+		println(root)
+		println(root.mirror)
+		println(root.mirror2)
 	}
-
-	val root = Node.from(List(8,6,10,5,7,9,11))
-	println(root)
-	println(root.mirror)
-	println(root.mirror2)
 }

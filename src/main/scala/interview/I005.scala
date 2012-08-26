@@ -63,12 +63,15 @@ class HeapTree (size: Int)(f: (Int, Int) => Boolean) {
 	private def right(idx: Int):Int = 2 * idx + 2
 }
 
-object I005 extends App {
+object I005 extends Demo {
 	def test(input: Seq[Int]) {
 		val heap = new HeapTree(4)((a, b) => a > b)
 		input.foreach(heap.add(_))
 		(1 to 4).foreach(_ => println(heap.remove))
 	}
-	test(List(1,2,3,4,5,6,7,8))
-	test(List(9,5,3,13,6,1,7,10))
+	
+	def test() = {
+		test(List(1,2,3,4,5,6,7,8))
+		test(List(9,5,3,13,6,1,7,10))
+	}
 }

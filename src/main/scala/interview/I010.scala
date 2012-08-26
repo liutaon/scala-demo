@@ -4,7 +4,7 @@ package interview
 单词翻转
 例子: I am a student. => .student a am I
 */
-object I010 extends App {
+object I010 extends Demo {
 	case class Swap(input: String) {
 		val buffer = new StringBuilder(input.size)
 		val word = new StringBuilder(20)
@@ -25,5 +25,7 @@ object I010 extends App {
 		}
 	}
 
-	println(Swap("I am a student.").swap)
+	def test() = {
+		println(Swap("I am a student.").swap)
+	}
 }

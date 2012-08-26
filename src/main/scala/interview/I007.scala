@@ -10,7 +10,7 @@ package interview
 1.如果链表可能有环列?
 2.如果需要求出俩个链表相交的第一个节点列?
 */
-object I007 extends App {
+object I007 extends Demo {
 	case class ListNode(value: Int, next: ListNode) {
 		def last() = {
 			var count = 1
@@ -42,4 +42,6 @@ object I007 extends App {
 			return n1
 		}
 	}
+
+	def test() = {}
 }

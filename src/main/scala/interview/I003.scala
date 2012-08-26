@@ -11,7 +11,7 @@ package interview
 /*
 原理: sum 记录当前计算的和，total 记录历史最大值，当 sum 变成负数时(因为此时已没有意义)，就重新计算。
 */
-object I003 extends App {
+object I003 extends Demo {
 	def maxsum(input: List[Int]): Int = {
 		var total = 0
 		var sum = 0
@@ -28,6 +28,8 @@ object I003 extends App {
 		total
 	}
 
-	val input = List(1,-2,3,10,-4,7,2,-5)
-	println(maxsum(input))
+	def test() = {
+		val input = List(1,-2,3,10,-4,7,2,-5)
+		println(maxsum(input))
+	}
 }

@@ -22,6 +22,6 @@ package interview
     *如果你在运算中使用了辅助的存储方式，那么你能找到不用这种方式的算法吗?
 　　★不用乘法或加法增加8倍。现在用同样的方法增加7倍。
 */
-object I008 extends App {
-	
+object I008 extends Demo {
+	def test() = {}
 }

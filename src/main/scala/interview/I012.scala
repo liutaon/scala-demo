@@ -5,7 +5,7 @@ package interview
 要求不能使用乘除法、for、while、if、else、switch、case 等关键字以及条件判断语句
 （A?B:C）。
 */
-object I012 extends App {
+object I012 extends Demo {
 	case class Sum1(n: Int){
 		private var t = n
 		def sum = {
@@ -33,7 +33,9 @@ object I012 extends App {
 		}
 	}
 
-	println(Sum1(100).sum)
-	println(Sum2(100).sum)
-	println((1 to 100).sum)
+	def test() = {
+		println(Sum1(100).sum)
+		println(Sum2(100).sum)
+		println((1 to 100).sum)
+	}
 }

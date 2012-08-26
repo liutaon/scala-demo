@@ -9,7 +9,7 @@ int m_nKey;
 ListNode* m_pNext;
 };
 */
-object I013 extends App {
+object I013 extends Demo {
 	case class ListNode(value: Int, var next: ListNode) {
 		def size:Int = {
 			if (next != null) 1 + next.size else 1
@@ -33,9 +33,11 @@ object I013 extends App {
 		}
 	}
 
-	val head = ListNode(List(1,2,3,4,5,6))
-	println(head.lastNode(0))
-	println(head.lastNode(1))
-	println(head.lastNode(2))
-	println(head.lastNode(3))
+	def test() = {
+		val head = ListNode(List(1,2,3,4,5,6))
+		println(head.lastNode(0))
+		println(head.lastNode(1))
+		println(head.lastNode(2))
+		println(head.lastNode(3))
+	}
 }

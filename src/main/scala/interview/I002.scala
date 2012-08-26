@@ -1,11 +1,11 @@
-package iterview
+package interview
 /*
 2.设计包含min函数的栈（栈）
 定义栈的数据结构，要求添加一个min函数，能够得到栈的最小元素。
 要求函数min、push以及pop的时间复杂度都是O(1)。
 */
 
-object I002 extends App {
+object I002 extends Demo {
 	sealed case class Node(value: Int, var prev: Node) {
 		override def toString(): String =  value.toString
 	}
@@ -46,20 +46,22 @@ object I002 extends App {
 		def min() = if (minhead != null) minhead.node.value else throw new Exception("empty")
 	}
 
-	val s = new Stack
-	val input = List(1,3,9,5,4,8,12,4,2)
-	input.foreach(s.push(_))
-	input.foreach(_ => println(s.pop))
-	println
-	s.push(3)
-	s.push(4)
-	s.push(2)
-	s.push(1)
-	println(s.min)
-	s.pop
-	println(s.min)
-	s.pop
-	println(s.min)
-	s.pop
-	println(s.min)
+	def test() = {
+		val s = new Stack
+		val input = List(1,3,9,5,4,8,12,4,2)
+		input.foreach(s.push(_))
+		input.foreach(_ => println(s.pop))
+		println
+		s.push(3)
+		s.push(4)
+		s.push(2)
+		s.push(1)
+		println(s.min)
+		s.pop
+		println(s.min)
+		s.pop
+		println(s.min)
+		s.pop
+		println(s.min)
+	}
 }
