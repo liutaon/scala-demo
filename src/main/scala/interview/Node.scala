@@ -17,8 +17,10 @@ case class Node(value: Int, var left: Node, var right: Node) {
 object Node {
 	def apply(i: Int) = new Node(i, null, null)
 
-	def from(ii: List[Int]) = ii match {
+	def from(ii: List[Int]): Node = ii match {
 		case Nil => null
 		case head :: xs => new Node(head, null, null).add(xs)
 	}
+
+	def from(ints: Int*): Node = from(ints.toList)
 }
