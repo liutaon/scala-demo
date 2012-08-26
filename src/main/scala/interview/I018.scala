@@ -13,20 +13,16 @@ object I018 extends Demo {
 
 		def find(start: Int = 0): Int = {
 			if (list.size == 1) return list(0)
-			var next = start + m - 1
-			while (next >= list.size) {
-				next -= list.size
-			}
+			val next = (start + m - 1) % list.size
 			list.remove(next)
-			if (next >= list.size) next = 0
-			find(next)
+			find(if (next == list.size) 0 else next)
 		}
 
 		def find2(): Int = {
 			var ret = 0
 			(2 to input.size).foreach(i => ret = (ret + m) % i)
 			ret
-		} 
+		}
 	}
 
 	def test() = {
