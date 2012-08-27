@@ -10,34 +10,34 @@ ListNode* m_pNext;
 };
 */
 object I013 extends Demo {
-	case class ListNode(value: Int, var next: ListNode) {
-		def size:Int = {
-			if (next != null) 1 + next.size else 1
-		}
+    case class ListNode(value: Int, var next: ListNode) {
+        def size:Int = {
+            if (next != null) 1 + next.size else 1
+        }
 
-		def lastNode(k: Int): ListNode = {
-			var c = size - k
-			var node = this
-			while (c != 0 && node != null) {
-				node = node.next
-				c -= 1
-			}
-			node
-		}
-	}
+        def lastNode(k: Int): ListNode = {
+            var c = size - k
+            var node = this
+            while (c != 0 && node != null) {
+                node = node.next
+                c -= 1
+            }
+            node
+        }
+    }
 
-	object ListNode {
-		def apply(ints: List[Int]): ListNode = ints match {
-			case Nil => null
-			case head::xs => new ListNode(head, ListNode(xs))
-		}
-	}
+    object ListNode {
+        def apply(ints: List[Int]): ListNode = ints match {
+            case Nil => null
+            case head::xs => new ListNode(head, ListNode(xs))
+        }
+    }
 
-	def test() = {
-		val head = ListNode(List(1,2,3,4,5,6))
-		println(head.lastNode(0))
-		println(head.lastNode(1))
-		println(head.lastNode(2))
-		println(head.lastNode(3))
-	}
+    def test() = {
+        val head = ListNode(List(1,2,3,4,5,6))
+        println(head.lastNode(0))
+        println(head.lastNode(1))
+        println(head.lastNode(2))
+        println(head.lastNode(3))
+    }
 }

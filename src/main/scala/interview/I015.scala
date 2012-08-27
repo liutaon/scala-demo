@@ -25,37 +25,37 @@ BSTreeNode *m_pRight; // right child of node
 };
 */
 object I015 extends Demo {
-	implicit def wrapper(node: Node) = new MyNode(node)
-	case class MyNode(node: Node) {
-		def mirror: Node = {
-			val t = node.left
-			node.left = node.right
-			node.right = t
-			if (node.left != null) node.left.mirror
-			if (node.right != null) node.right.mirror
-			node
-		}
+    implicit def wrapper(node: Node) = new MyNode(node)
+    case class MyNode(node: Node) {
+        def mirror: Node = {
+            val t = node.left
+            node.left = node.right
+            node.right = t
+            if (node.left != null) node.left.mirror
+            if (node.right != null) node.right.mirror
+            node
+        }
 
-		def mirror2: Node = {
-			import scala.collection.mutable
-			val stack = mutable.Stack[Node]()
-			stack.push(node)
-			while (!stack.isEmpty) {
-				val node = stack.pop
-				val t = node.left
-				node.left = node.right
-				node.right = t
-				if (node.left != null) stack.push(node.right)
-				if (node.right != null) stack.push(node.left)
-			}
-			node
-		}
-	}
+        def mirror2: Node = {
+            import scala.collection.mutable
+            val stack = mutable.Stack[Node]()
+            stack.push(node)
+            while (!stack.isEmpty) {
+                val node = stack.pop
+                val t = node.left
+                node.left = node.right
+                node.right = t
+                if (node.left != null) stack.push(node.right)
+                if (node.right != null) stack.push(node.left)
+            }
+            node
+        }
+    }
 
-	def test() = {
-		val root = Node.from(List(8,6,10,5,7,9,11))
-		println(root)
-		println(root.mirror)
-		println(root.mirror2)
-	}
+    def test() = {
+        val root = Node.from(List(8,6,10,5,7,9,11))
+        println(root)
+        println(root.mirror)
+        println(root.mirror2)
+    }
 }

@@ -11,37 +11,37 @@ package interview
 2.如果需要求出俩个链表相交的第一个节点列?
 */
 object I007 extends Demo {
-	case class ListNode(value: Int, next: ListNode) {
-		def last() = {
-			var count = 1
-			var node = this
-			while (node.next != null && node.next != this) {
-				node = node.next
-				count += 1
-			}
-			(count, node)
-		}
+    case class ListNode(value: Int, next: ListNode) {
+        def last() = {
+            var count = 1
+            var node = this
+            while (node.next != null && node.next != this) {
+                node = node.next
+                count += 1
+            }
+            (count, node)
+        }
 
-		def cross(node: ListNode): ListNode = {
-			val (c1, l1) = last
-			val (c2, l2) = node.last
-			if (l1 != l2) {
-				return null
-			}
-			var n1 = if (c1 > c2) this else node
-			var n2 = if (c1 > c2) node else this
-			var index = math.abs(c1 - c2)
-			while (index != 0) {
-				n1 = n1.next
-				index -= 1
-			}
-			while(n1 != n2) {
-				n1 = n1.next
-				n2 = n2.next
-			}
-			return n1
-		}
-	}
+        def cross(node: ListNode): ListNode = {
+            val (c1, l1) = last
+            val (c2, l2) = node.last
+            if (l1 != l2) {
+                return null
+            }
+            var n1 = if (c1 > c2) this else node
+            var n2 = if (c1 > c2) node else this
+            var index = math.abs(c1 - c2)
+            while (index != 0) {
+                n1 = n1.next
+                index -= 1
+            }
+            while(n1 != n2) {
+                n1 = n1.next
+                n2 = n2.next
+            }
+            return n1
+        }
+    }
 
-	def test() = {}
+    def test() = {}
 }

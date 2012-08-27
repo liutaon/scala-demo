@@ -13,38 +13,38 @@ package interview
 */
 // 个人认为此题有歧义，若输入为0,1,2，则无法确定输出什么。
 object I006 extends Demo {
-	case class FindCounter(input: Seq[Int]){
-		private val counter = Array.fill(input.size)(-1)
-		private var ok = false
+    case class FindCounter(input: Seq[Int]){
+        private val counter = Array.fill(input.size)(-1)
+        private var ok = false
 
-		def find: Seq[Int] = {
-			var i = 0
-			while(!ok && i <= input.size) {
-				i += 1
-				setNextBottom
-			}
-			return counter
-		}
+        def find: Seq[Int] = {
+            var i = 0
+            while(!ok && i <= input.size) {
+                i += 1
+                setNextBottom
+            }
+            return counter
+        }
 
-		def setNextBottom() {
-			var reB = true
-			(0 until input.size).foreach { i =>
-				val fre = getFrequecy(i)
-				if (counter(i) != fre) {
-					counter(i) = fre
-					reB = false
-				}
-			}
-			ok = reB
-		}
+        def setNextBottom() {
+            var reB = true
+            (0 until input.size).foreach { i =>
+                val fre = getFrequecy(i)
+                if (counter(i) != fre) {
+                    counter(i) = fre
+                    reB = false
+                }
+            }
+            ok = reB
+        }
 
-		def getFrequecy(num: Int) = counter.count(_ == num)
-	}
+        def getFrequecy(num: Int) = counter.count(_ == num)
+    }
 
-	def test() = {
-		println(FindCounter(List(0,1,2,3,4,5,6,7,8,9)).find)
-		println(FindCounter(List(0,1,2,3)).find)
-		println(FindCounter(List(0,1,2)).find)
-		println(FindCounter(List(0,1,2,3,4,5,6)).find)
-	}
+    def test() = {
+        println(FindCounter(List(0,1,2,3,4,5,6,7,8,9)).find)
+        println(FindCounter(List(0,1,2,3)).find)
+        println(FindCounter(List(0,1,2)).find)
+        println(FindCounter(List(0,1,2,3,4,5,6)).find)
+    }
 }

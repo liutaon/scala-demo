@@ -23,5 +23,5 @@ package interview
 　　★不用乘法或加法增加8倍。现在用同样的方法增加7倍。
 */
 object I008 extends Demo {
-	def test() = {}
+    def test() = {}
 }

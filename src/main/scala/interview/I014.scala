@@ -8,20 +8,20 @@ package interview
 */
 object I014 extends Demo {
 
-	def find(input: List[Int], sum: Int):Option[(Int, Int)] = {
-		var head = 0
-		var last = input.size - 1
-		var ret: Option[(Int, Int)] = None
-		while (!ret.isDefined && last >= 0 && head < input.size) {
-			val total = input(head) + input(last)
-			if (total > sum) last -= 1
-			else if (total < sum) head += 1
-			else ret = Some(input(head), input(last))
-		}
-		ret
-	}
+    def find(input: List[Int], sum: Int):Option[(Int, Int)] = {
+        var head = 0
+        var last = input.size - 1
+        var ret: Option[(Int, Int)] = None
+        while (!ret.isDefined && last >= 0 && head < input.size) {
+            val total = input(head) + input(last)
+            if (total > sum) last -= 1
+            else if (total < sum) head += 1
+            else ret = Some(input(head), input(last))
+        }
+        ret
+    }
 
-	def test() = {
-		println(find(List(1,2,4,7,11,15), 15))
-	}
+    def test() = {
+        println(find(List(1,2,4,7,11,15), 15))
+    }
 }

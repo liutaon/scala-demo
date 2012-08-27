@@ -10,17 +10,17 @@ f(n)= 1 n=1
 */
 object I019 extends Demo {
 
-	def f(n: Int): Long = f1(1, 0, n)
+    def f(n: Int): Long = f1(1, 0, n)
 
-	private def f1(a: Long, b: Long, count: Int): Long = count match {
-		case 0 => b
-		case i => f1(a + b, a, count - 1)
-	}
+    private def f1(a: Long, b: Long, count: Int): Long = count match {
+        case 0 => b
+        case i => f1(a + b, a, count - 1)
+    }
 
-	def test() = {
-		println(f(5))
-		println(f(25))
-		println(f(40))
-		println(f(8888888))
-	}
+    def test() = {
+        println(f(5))
+        println(f(25))
+        println(f(40))
+        println(f(8888888))
+    }
 }

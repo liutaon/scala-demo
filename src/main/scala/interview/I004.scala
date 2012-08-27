@@ -14,26 +14,26 @@ package interview
 */
 
 object I004 extends Demo {
-	import scala.collection.mutable.ArrayStack
-	implicit def wrapper(node: Node) = new MyNode(node)
-	case class MyNode(node: Node) {
-		def findSum(sum: Int, stack: ArrayStack[Int]): Unit = {
-			stack.push(node.value)
-			try {
-				if (node.value == sum && node.isleaf) {
-					println(stack.toList.reverse.mkString(","))
-				} else {
-					if (node.left != null) node.left.findSum(sum - node.value, stack)
-					if (node.right != null) node.right.findSum(sum - node.value, stack)
-				}
-			} finally {
-				stack.pop
-			}
-		}
-	}
+    import scala.collection.mutable.ArrayStack
+    implicit def wrapper(node: Node) = new MyNode(node)
+    case class MyNode(node: Node) {
+        def findSum(sum: Int, stack: ArrayStack[Int]): Unit = {
+            stack.push(node.value)
+            try {
+                if (node.value == sum && node.isleaf) {
+                    println(stack.toList.reverse.mkString(","))
+                } else {
+                    if (node.left != null) node.left.findSum(sum - node.value, stack)
+                    if (node.right != null) node.right.findSum(sum - node.value, stack)
+                }
+            } finally {
+                stack.pop
+            }
+        }
+    }
 
-	def test() = {
-		val node = Node.from(List(10,5,12,4,7))
-		node.findSum(22, ArrayStack[Int]())
-	}
+    def test() = {
+        val node = Node.from(List(10,5,12,4,7))
+        node.findSum(22, ArrayStack[Int]())
+    }
 }

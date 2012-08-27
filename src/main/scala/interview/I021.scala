@@ -8,26 +8,26 @@ package interview
 */
 object I021 extends Demo {
 
-	case class Find(n: Int, m: Int)(f: Seq[Int] => Unit) {
-		import scala.collection.mutable
-		private val stack = mutable.Stack[Int]()
+    case class Find(n: Int, m: Int)(f: Seq[Int] => Unit) {
+        import scala.collection.mutable
+        private val stack = mutable.Stack[Int]()
 
-		def find() = find0(0, 1)
+        def find() = find0(0, 1)
 
-		private def find0(total: Int, start: Int): Unit = {
-			(start to n).foreach { i =>
-				stack.push(i)
-				total + i match {
-					case t if (t == m) => f(stack)
-					case t if (t < m) => find0(t, i + 1)
-					case _ =>
-				}
-				stack.pop()
-			}
-		}
-	}
+        private def find0(total: Int, start: Int): Unit = {
+            (start to n).foreach { i =>
+                stack.push(i)
+                total + i match {
+                    case t if (t == m) => f(stack)
+                    case t if (t < m) => find0(t, i + 1)
+                    case _ =>
+                }
+                stack.pop()
+            }
+        }
+    }
 
-	def test() = {
-		Find(18, 20)(s => println(s.reverse)).find	
-	}
+    def test() = {
+        Find(18, 20)(s => println(s.reverse)).find    
+    }
 }

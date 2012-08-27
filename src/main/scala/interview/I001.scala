@@ -14,42 +14,42 @@ package interview
 */
 
 object I001 extends Demo {
-	implicit def wrapper(node: Node) = new MyNode(node)
-	case class MyNode(node: Node) {
-		private var last: Node = null
+    implicit def wrapper(node: Node) = new MyNode(node)
+    case class MyNode(node: Node) {
+        private var last: Node = null
 
-		def toList(node: Node): Node = {
-			if (node != null) {
-				toList(node.left)
-				process(node)
-				toList(node.right)
-			}
-			last
-		}
+        def toList(node: Node): Node = {
+            if (node != null) {
+                toList(node.left)
+                process(node)
+                toList(node.right)
+            }
+            last
+        }
 
-		private def process(node: Node) {
-			node.left = last
-			if (last != null) {
-				last.right = node
-			}
-			last = node
-		}
-	}
+        private def process(node: Node) {
+            node.left = last
+            if (last != null) {
+                last.right = node
+            }
+            last = node
+        }
+    }
 
-	def leftString(node: Node): String = {
-		import scala.collection.mutable
-		val list = mutable.ListBuffer[Int]()
-		var n = node
-		while (n != null) {
-			list += n.value
-			n = n.left
-		}
-		list.reverse.mkString("=")
-	}
+    def leftString(node: Node): String = {
+        import scala.collection.mutable
+        val list = mutable.ListBuffer[Int]()
+        var n = node
+        while (n != null) {
+            list += n.value
+            n = n.left
+        }
+        list.reverse.mkString("=")
+    }
 
-	def test() = {
-		val input = List(10,6,14,4,8,12,16)
-		val root = Node.from(input)
-		println(leftString(root.toList(root)))
-	}
+    def test() = {
+        val input = List(10,6,14,4,8,12,16)
+        val root = Node.from(input)
+        println(leftString(root.toList(root)))
+    }
 }
