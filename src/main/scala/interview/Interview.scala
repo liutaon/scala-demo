@@ -17,7 +17,7 @@ object Interview extends App {
     // add demos
     add(I001, I002, I003, I004, I005, I006, I007, I008, I009, I010,
         I011, I012, I013, I014, I015, I016, I017, I018, I019, I020,
-        I021, I022, I023, I024)
+        I021, I022, I023, I024, I025)
 
     def add(all: Demo*) = all.foreach { d => demos += d.index -> d}
 
