@@ -24,8 +24,19 @@ object I028 extends Demo {
         c
     }
 
+    def find3(value: Int) = {
+        var c = 0
+        for (i <- 0 to 31; t = 1 << i; if t <= value) {
+            if ((t & value) == t) c += 1
+        }
+        c
+    }
+
     def test() = {
-        println(find1(Int.MaxValue))
-        println(find2(Int.MaxValue))
+        List(1234567, Int.MaxValue, Int.MinValue).foreach { t =>
+            println(find1(t))
+            println(find2(t))
+            println(find3(t))
+        }
     }
 }
