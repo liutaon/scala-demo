@@ -27,16 +27,27 @@ object I028 extends Demo {
     def find3(value: Int) = {
         var c = 0
         for (i <- 0 to 31; t = 1 << i; if t <= value) {
-            if ((t & value) == t) c += 1
+            if ((t & value) != 0) c += 1
         }
         c
     }
 
+    def find4(value: Int) = {
+        (0 to 31).count(i => ((1 << i) & value) != 0)
+    }
+
+    def find5(value: Int)= {
+        var n = value
+        Iterator.continually(n).takeWhile(_ != 0).count { i => n = i & (i - 1); true }
+    }
+
     def test() = {
-        List(1234567, Int.MaxValue, Int.MinValue).foreach { t =>
+        List(1234567, 99999999, Int.MaxValue, Int.MinValue).foreach { t =>
             println(find1(t))
             println(find2(t))
             println(find3(t))
+            println(find4(t))
+            println(find5(t))
         }
     }
 }

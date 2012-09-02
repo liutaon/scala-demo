@@ -21,8 +21,6 @@ object I027 extends Demo {
     }
 
     case class Step2(n: Int) {
-        import scala.collection.mutable
-        private val map = Map[Int, Int]()
         private var count = 0
 
         def step(total: Int = n): Int = {
