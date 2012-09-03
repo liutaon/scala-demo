@@ -17,19 +17,19 @@ object I029 extends Demo {
         val queue = mutable.Queue[Int]()
         source.foreach(queue.enqueue(_))
         stack.push(queue.dequeue)
-        var ok = true
-        dest.takeWhile { d =>
+        dest.forall { d =>
+            var ok = true
             while (stack.top != d && ok) {
                 if (queue.isEmpty) ok = false else stack.push(queue.dequeue)
             }
             if (ok) stack.pop
             ok
         }
-        ok
     }
 
     def test() = {
         println(check(List(1,2,3,4,5), List(4,5,3,2,1)))
         println(check(List(1,2,3,4,5), List(4,3,5,1,2)))
+        println(check(List(1,2,3,4,5), List(5,4,3,2,1)))
     }
 }
