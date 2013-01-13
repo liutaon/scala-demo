@@ -32,6 +32,7 @@ object I030 extends Demo {
 
     def test() = {
         println(count(12))
+        println(count(123))
         println(count(100000000))
     }
 }
